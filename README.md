@@ -39,3 +39,8 @@ Add a new "Duplicate Order" button to the past orders displayed on the dashboard
 - You will need to build the API endpoint and the client-side logic to update the cart store.
 
 Good luck!
+
+## Submission
+
+When you are finished, please submit a pull request with your changes. 
+**IMPORTANT:** You must fill out the AI_LOG.md file included in this repository. Please describe which AI tools you used and how you used them to complete the tasks.
