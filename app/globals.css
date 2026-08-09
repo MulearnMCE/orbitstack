@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  /* High Contrast Binary Palette */
+  --color-black: #000000;
+  --color-white: #ffffff;
+
+  --font-sans: var(--font-oswald), system-ui, sans-serif;
+  --font-mono: var(--font-space-mono), monospace;
+}
+
+/* Brutalist Resets */
+* {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Base Body Styles and Raw Grid Background */
+body {
+  background-color: #000000;
+  color: #ffffff;
+  /* Raw Grid System */
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 1px, transparent 1px),
+    /* Pixelated Star Field */
+    radial-gradient(1px 1px at 10% 20%, white, transparent),
+    radial-gradient(2px 2px at 30% 60%, white, transparent),
+    radial-gradient(1px 1px at 50% 10%, white, transparent),
+    radial-gradient(2px 2px at 80% 80%, white, transparent),
+    radial-gradient(1px 1px at 90% 40%, white, transparent);
+  background-size: 100px 100px, 100px 100px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+}
+
+/* Make emojis white */
+.emoji-white {
+  color: transparent !important;
+  text-shadow: 0 0 0 white !important;
+}
+
+/* Headers dominance */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-oswald);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+/* Custom scrollbar for brutalist theme */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+  border-left: 2px solid #fff;
+}
+::-webkit-scrollbar-thumb {
+  background: #fff;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ccc;
+}
