@@ -5,7 +5,7 @@ import { listOrders } from '@/lib/orders/queries';
 import { computeOrderTotals } from '@/lib/pricing/calculator';
 import type { ApiResponse } from '@/types';
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   try {
     const session = await getSession();
     if (!session) {

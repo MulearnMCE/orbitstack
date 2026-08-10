@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { getSession } from '@/lib/auth/session';
 import { listOrders } from '@/lib/orders/queries';
@@ -43,9 +44,9 @@ export default async function DashboardPage() {
         <div className="rounded-xl border border-space-700 bg-space-900 py-16 text-center text-lunar-400">
           <div className="mb-3 text-4xl">🌑</div>
           <p>No orders yet.</p>
-          <a href="/products" className="mt-2 block text-sm text-moon-gold hover:underline">
+          <Link href="/products" className="mt-2 block text-sm text-moon-gold hover:underline">
             Start shopping →
-          </a>
+          </Link>
         </div>
       ) : (
         <ul className="space-y-4">
@@ -59,4 +60,3 @@ export default async function DashboardPage() {
     </div>
   );
 }
-

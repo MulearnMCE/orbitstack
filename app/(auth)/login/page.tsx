@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Button } from '@/components/ui/Button';
 
 const SEEDED_USERS = [
   { email: 'alice@orbitstack.dev', name: 'Alice Nakamura', tier: 'Pro' },

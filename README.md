@@ -20,6 +20,38 @@ Welcome to OrbitStack! This is a modern, Next.js-based e-commerce platform built
    npm run dev
    ```
 
+4. Open [http://localhost:3000](http://localhost:3000). Use one of the seeded user accounts shown by `npm run seed` to sign in.
+
+## Local database setup
+
+Start PostgreSQL with Docker, configure the connection, create the schema, and seed sample data:
+
+```bash
+docker compose up -d
+cp .env.example .env
+npx prisma db push
+npm run seed
+```
+
+Run the verification suite with:
+
+```bash
+npm test
+npm run lint
+npx tsc --noEmit
+npm run build
+```
+
+## Implemented fixes
+
+- Corrected stacked free-shipping logic so shipping is waived exactly once and never becomes a product discount.
+- Removed the dashboard's N+1 order-item queries by loading orders, items, and products in one Prisma query; added an index matching the user/date query.
+- Added an authenticated **Duplicate Order** action. It verifies ownership and current inventory, adds available order lines to the Zustand cart in one update, and clearly reports unavailable lines.
+
+## Remaining limitations
+
+- Duplicate Order validates stock at click time. As with any cart, availability can change before checkout, where the existing order endpoint validates stock again.
+
 ## The Challenge
 
 There are three tasks to complete. Please review the codebase and implement the fixes and features described below.

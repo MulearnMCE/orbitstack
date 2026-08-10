@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import { useCartStore } from '@/store/cart';
+import { useHydrated } from '@/lib/utils/useHydrated';
 import { CartItem } from './CartItem';
 import { CartSummary } from './CartSummary';
 import { Button } from '@/components/ui/Button';
@@ -13,13 +13,9 @@ interface CartDrawerProps {
 }
 
 export function CartDrawer({ open, onClose }: CartDrawerProps) {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useHydrated();
   const { items, itemCount } = useCartStore();
   const count = itemCount();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const displayedItems = mounted ? items : [];
   const displayedCount = mounted ? count : 0;

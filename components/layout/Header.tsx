@@ -1,19 +1,16 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useCartStore } from '@/store/cart';
 import { CartDrawer } from '@/components/cart/CartDrawer';
+import { useHydrated } from '@/lib/utils/useHydrated';
 
 export function Header() {
   const [cartOpen, setCartOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const mounted = useHydrated();
   const { itemCount } = useCartStore();
   const count = itemCount();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   return (
     <>

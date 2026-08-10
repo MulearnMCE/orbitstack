@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCartStore } from '@/store/cart';
 import { CartSummary } from '@/components/cart/CartSummary';
@@ -8,19 +9,16 @@ import { DiscountInput } from './DiscountInput';
 import { Button } from '@/components/ui/Button';
 import { formatCents } from '@/lib/utils/format';
 import type { PricingResult } from '@/types';
+import { useHydrated } from '@/lib/utils/useHydrated';
 
 export function CheckoutForm() {
   const router = useRouter();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useHydrated();
   const { items, clearCart } = useCartStore();
   const [pricing, setPricing] = useState<PricingResult | null>(null);
   const [appliedCode, setAppliedCode] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const handleDiscountApplied = (code: string, result: PricingResult) => {
     setAppliedCode(code);
@@ -61,7 +59,7 @@ export function CheckoutForm() {
   if (!mounted || items.length === 0) {
     return (
       <div className="py-12 text-center text-lunar-400">
-        Your cart is empty. <a href="/products" className="text-moon-gold hover:underline">Browse products</a>
+        Your cart is empty. <Link href="/products" className="text-moon-gold hover:underline">Browse products</Link>
       </div>
     );
   }

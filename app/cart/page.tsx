@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { CartItem } from '@/components/cart/CartItem';
 import { CartSummaryPage } from '@/components/cart/CartSummaryPage';
 
 export const metadata: Metadata = {
