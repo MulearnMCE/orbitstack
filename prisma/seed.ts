@@ -53,7 +53,7 @@ async function main() {
   console.log('✓ Users seeded');
 
   // ── Discount codes ──────────────────────────────────────────────────────────
-  const [, proship15] = await Promise.all([
+  await Promise.all([
     prisma.discountCode.upsert({
       where: { code: 'NEWUSER10' },
       update: {},

@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { prisma } from '@/lib/db/client';
 import { ProductGrid } from '@/components/products/ProductGrid';
 import type { Product } from '@/types';
@@ -40,16 +41,16 @@ export default async function ProductsPage({
 
         {}
         <div className="flex flex-wrap gap-2">
-          <a
+          <Link
             href="/products"
             className={`rounded-lg px-3 py-1.5 text-sm transition-colors ${
               !category ? 'bg-moon-gold text-space-950 font-medium' : 'bg-space-800 text-lunar-400 hover:text-lunar-100'
             }`}
           >
             All
-          </a>
+          </Link>
           {categories.map((cat) => (
-            <a
+            <Link
               key={cat}
               href={`/products?category=${cat}`}
               className={`rounded-lg px-3 py-1.5 text-sm capitalize transition-colors ${
@@ -59,7 +60,7 @@ export default async function ProductsPage({
               }`}
             >
               {cat}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
