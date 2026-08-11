@@ -3,6 +3,10 @@
 ## Tools Used
 *GitHub Copilot, Opencode, ChatGPT*
 
+- *Github Copilot - For understanding the challenge*
+- *ChatGPT - For taking assistant with the errors in git*
+- *Opencode - For completing the each Tasks*
+
 
 ## Logs:
 
