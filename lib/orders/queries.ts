@@ -1,23 +1,22 @@
 import { prisma } from '@/lib/db/client';
 
 export async function listOrders(userId: string) {
-  
-  const orders = await prisma.order.findMany({
-    where: { userId },
+  const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+
+  return prisma.order.findMany({
+    where: {
+      userId,
+      createdAt: {
+        gte: thirtyDaysAgo,
+      },
+    },
     orderBy: { createdAt: 'desc' },
-  });
-
-  const ordersWithItems = await Promise.all(
-    orders.map(async (order) => {
-      const items = await prisma.orderItem.findMany({
-        where: { orderId: order.id },
+    include: {
+      items: {
         include: { product: true },
-      });
-      return { ...order, items };
-    })
-  );
-
-  return ordersWithItems;
+      },
+    },
+  });
 }
 
 export async function getOrderById(orderId: string) {
