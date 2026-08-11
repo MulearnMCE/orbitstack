@@ -27,18 +27,18 @@ export function computeOrderTotals(params: ComputeParams): PricingResult {
     discountCents = applyDiscountCode(subtotalCents, discountCode);
   }
 
-  if (userTier === PRO_TIER && subtotalCents >= FREE_SHIPPING_THRESHOLD_CENTS) {
+  // Free shipping applies if the code grants it, OR the user qualifies
+  // via Pro tier + order threshold. Multiple sources of free shipping
+  // simply result in free shipping — they don't stack into a bigger refund.
+  const hasFreeShipping =
+    discountCode?.stackableWithFreeShipping === true ||
+    (userTier === PRO_TIER && subtotalCents >= FREE_SHIPPING_THRESHOLD_CENTS);
+
+  if (hasFreeShipping) {
     shippingCents = 0;
   }
 
-  if (discountCode?.stackableWithFreeShipping) {
-    shippingCents = 0;
-  }
-
-  if (userTier === PRO_TIER && discountCode?.stackableWithFreeShipping) {
-    discountCents += STANDARD_SHIPPING_RATE;
-  }
-
+  // total = items minus item discounts, plus shipping (never negative)
   const totalCents = Math.max(0, subtotalCents - discountCents + shippingCents);
 
   return {
