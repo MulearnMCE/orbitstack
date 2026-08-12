@@ -18,10 +18,17 @@
 
 **Task 2: Dashboard Performance**
 - *How did you use AI here? Did you use it to identify the N+1 issue, or just to write the optimized query?* <br>
+    I used github copilot to identify the problem and use opencode to write the code.
+    I found the N+1 query issue. The listOrders function fetches all orders, then makes a separate query for each order's items. I fix this by using Prisma's include to fetch everything in one query.
 
 **Task 3: Duplicate Order Feature**
 - *Did you use AI to write the API route, the client component, or both?* <br>
+    Yes, for both i use opencode what i done is
+    1. Add a POST endpoint to /api/orders/[id]/route.ts that validates stock and returns order items
+    2. Add a "Duplicate Order" button to OrderCard.tsx
+    3. Add a function to cart.ts to add multiple items from an order (replacing the cart)
 - *Did AI make any mistakes you had to fix manually?* <br>
+    Yes,  Added "use client" directive at the top of OrderCard.tsx.
 
 ## General Comments
 
