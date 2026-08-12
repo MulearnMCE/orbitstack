@@ -17,7 +17,10 @@ Please be honest and detailed about your AI usage. Using AI is perfectly fine an
 - Verification performed: `npm test` passed (4 tests) and `npx tsc --noEmit` passed. The repository-wide lint command has unrelated existing UI errors; the production build could not fetch its Google Fonts in this environment.
 
 **Task 2: Dashboard Performance**
-- Not started in this session.
+- I asked Codex to inspect the dashboard order-loading path and optimize the data access for large order histories.
+- Codex identified an N+1 query pattern in `listOrders`: it fetched all of a user's orders, then ran a separate item/product query for every order.
+- Codex replaced this with one Prisma relation query, scoped the dashboard history to the most recent 30 days, selected only fields rendered by the dashboard, and added a composite `(userId, createdAt)` index to support the filtered history query.
+- Verification performed: `npm test` passed (4 tests) and `npx tsc --noEmit` passed.
 
 **Task 3: Duplicate Order Feature**
 - Not started in this session.

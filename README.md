@@ -33,6 +33,13 @@ The /dashboard page is loading extremely slowly for users who have a large order
 - Identify the performance bottleneck when loading the order history.
 - Optimize the data fetching so the dashboard loads quickly regardless of how many orders the user has.
 
+#### Implemented fix
+
+- Replaced the N+1 order-history lookup with a single Prisma query that loads each order's items and products together.
+- Limited dashboard history to orders placed in the last 30 days.
+- Selected only the fields rendered in the dashboard and added a composite `Order(userId, createdAt)` index for the filtered, newest-first query.
+- Verified with `npm test` and `npx tsc --noEmit`.
+
 ### Task 3: "Duplicate Order" Feature
 Add a new "Duplicate Order" button to the past orders displayed on the dashboard.
 - Clicking the button should add the same items from the past order directly into the user's cart (provided they are still in stock).
