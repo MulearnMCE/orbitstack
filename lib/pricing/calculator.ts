@@ -35,7 +35,13 @@ export function computeOrderTotals(params: ComputeParams): PricingResult {
     shippingCents = 0;
   }
 
-  if (userTier === PRO_TIER && discountCode?.stackableWithFreeShipping) {
+  // Only credit the shipping saving to discountCents when the discount code
+  // is what made shipping free. If the Pro tier threshold already zeroed it
+  // out, there is no shipping cost for the coupon to "save" — adding it here
+  // would inflate discountCents and produce a negative effective total.
+  const proThresholdFreeShipping =
+    userTier === PRO_TIER && subtotalCents >= FREE_SHIPPING_THRESHOLD_CENTS;
+  if (discountCode?.stackableWithFreeShipping && !proThresholdFreeShipping) {
     discountCents += STANDARD_SHIPPING_RATE;
   }
 

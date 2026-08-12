@@ -1,24 +1,21 @@
 import { prisma } from '@/lib/db/client';
 
 export async function listOrders(userId: string) {
-  
-  const orders = await prisma.order.findMany({
+  // Previously this fetched orders first, then fired one extra `OrderItem.findMany`
+  // per order — an N+1 pattern that scaled badly for users with large order histories.
+  // Prisma's nested `include` loads all relations in a single batched operation,
+  // eliminating the per-order round-trips entirely.
+  return prisma.order.findMany({
     where: { userId },
     orderBy: { createdAt: 'desc' },
-  });
-
-  const ordersWithItems = await Promise.all(
-    orders.map(async (order) => {
-      const items = await prisma.orderItem.findMany({
-        where: { orderId: order.id },
+    include: {
+      items: {
         include: { product: true },
-      });
-      return { ...order, items };
-    })
-  );
-
-  return ordersWithItems;
+      },
+    },
+  });
 }
+
 
 export async function getOrderById(orderId: string) {
   return prisma.order.findUnique({
