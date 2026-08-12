@@ -25,11 +25,15 @@
 
 ## General Comments
 
-### Comment1 ### <br>
-    - *When i first see docker-compose.yml I thought of installing something in docker when i opened i got to see postgressql user,password and db then i thought i need to initialise docker, for confirmation i ask github copilot "do i need to initialise docker for postgressql" but it remember me of prisma. so i leave it and copy the db url from env.example* 
-    - *But when i click 'shop now' button it trigger me an error "Prisma couldn't connect to the database." i shocked and asked opencode for the fix and it tell me to started a local Postgres 16 matching the repo's docker-compose.yml creds using rootless podman.* <br>
-### Comment2 ### <br>
-    I added a back button and logout button 
-    - *Logout — components/dashboard/LogoutButton.tsx added to the Order History page.*
-    - *Back arrow — components/layout/BackButton.tsx rendered in the root layout on orders and shop pages.*
+**Comment 1**<br>
 
+- *When I first saw `docker-compose.yml`, I thought of installing something in Docker. When I opened it, I saw the PostgreSQL username, password, and database, so I thought I needed to initialize Docker. For confirmation, I asked GitHub Copilot, "Do I need to initialize Docker for PostgreSQL?" But it reminded me of Prisma, so I left it and copied the DB URL from `env.example`.*
+
+- *But when I clicked the "Shop Now" button, it triggered an error: "Prisma couldn't connect to the database." I was shocked and asked OpenCode for a fix. It told me to start a local PostgreSQL 16 instance matching the repo's `docker-compose.yml` credentials using rootless Podman.*
+
+**Comment 2**<br>
+
+I added a back button and logout button.
+
+- *Logout — `components/dashboard/LogoutButton.tsx` added to the Order History page.*
+- *Back arrow — `components/layout/BackButton.tsx` rendered in the root layout on the Orders and Shop pages.*
