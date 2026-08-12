@@ -45,6 +45,12 @@ Add a new "Duplicate Order" button to the past orders displayed on the dashboard
 - Clicking the button should add the same items from the past order directly into the user's cart (provided they are still in stock).
 - You will need to build the API endpoint and the client-side logic to update the cart store.
 
+#### Implemented feature
+
+- Added the authenticated `POST /api/orders/[id]/duplicate` endpoint, including 401, 403, and 404 responses where appropriate.
+- The endpoint returns only active products with sufficient current stock, and reports how many unavailable items were skipped.
+- Added a **Duplicate Order** button to each dashboard order. It adds eligible current products and their original quantities to the persisted Zustand cart, and gives clear loading, success, partial-stock, and failure feedback.
+
 Good luck!
 
 ## Submission

@@ -23,7 +23,10 @@ Please be honest and detailed about your AI usage. Using AI is perfectly fine an
 - Verification performed: `npm test` passed (4 tests) and `npx tsc --noEmit` passed.
 
 **Task 3: Duplicate Order Feature**
-- Not started in this session.
+- I asked Codex to implement the duplicate-order feature end to end, including a protected API endpoint and the dashboard/cart interaction.
+- Codex examined the existing session helper, order-detail lookup, API response envelope, and Zustand cart store before implementing the feature.
+- Codex added `POST /api/orders/[id]/duplicate`, which verifies authentication and order ownership, returns eligible active products with enough current stock, and reports skipped unavailable items. Codex also added a client-side dashboard button that calls this endpoint and adds the returned items to the cart.
+- Verification performed: `npm test` passed (4 tests) and `npx tsc --noEmit` passed.
 
 ## General Comments
 *(Any other thoughts on how AI helped or hindered you during this assessment?)*

@@ -60,6 +60,11 @@ export interface Order {
   items?: OrderItem[];
 }
 
+export interface DuplicateOrderResult {
+  items: CartItem[];
+  skippedItemCount: number;
+}
+
 // ---------------------------------------------------------------------------
 // Cart (client-side only, managed by Zustand)
 // ---------------------------------------------------------------------------
