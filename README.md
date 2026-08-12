@@ -22,25 +22,31 @@ Welcome to OrbitStack! This is a modern, Next.js-based e-commerce platform built
 
 ## The Challenge [Finished]
 
-There are three tasks to complete. Please review the codebase and implement the fixes and features described below.
-
 ### Task 1: Pricing Logic Bug [100% completed]
 A user reported an issue where applying a free shipping discount code to a Pro account results in a negative discount calculation (instead of ) for the shipping cost. 
-- You need to locate the pricing computation logic and fix the bug so that shipping is calculated correctly when multiple shipping discounts/free tiers stack.
+- The pricing computation logic was fixed so that shipping is calculated correctly when multiple shipping discounts/free tiers stack.
 
 ### Task 2: Dashboard Performance [100% completed]
 The /dashboard page is loading extremely slowly for users who have a large order history.
-- Identify the performance bottleneck when loading the order history.
-- Optimize the data fetching so the dashboard loads quickly regardless of how many orders the user has.
+- The performance bottleneck when loading the order history was identified.
+- The data fetching was optimized so the dashboard loads quickly regardless of how many orders the user has.
 
 ### Task 3: "Duplicate Order" Feature [100% completed]
-Add a new "Duplicate Order" button to the past orders displayed on the dashboard.
-- Clicking the button should add the same items from the past order directly into the user's cart (provided they are still in stock).
-- You will need to build the API endpoint and the client-side logic to update the cart store.
+A "Duplicate Order" button was added to the past orders displayed on the dashboard.
+- Clicking the button adds the same items from the past order directly into the user's cart (provided they are still in stock).
+- The API endpoint and the client-side logic to update the cart store was built.
 
-Good luck!
 
-## Submission [Done]
 
-When you are finished, please submit a pull request with your changes. 
-**IMPORTANT:** You must fill out the AI_LOG.md file included in this repository. Please describe which AI tools you used and how you used them to complete the tasks.
+## Additional Features Added
+1. I added a back button and logout button feature
+
+- *Logout — `components/dashboard/LogoutButton.tsx` added to the Order History page.*
+- *Back arrow — `components/layout/BackButton.tsx` rendered in the root layout on the Orders and Shop pages.*
+
+2. I also added a Clear Cart feature after every logout in the dashboard
+
+- *Cart cleared — `actions/cart.ts` modified to clear the cart after logout.*
+- *Confirmation — `components/dashboard/LogoutButton.tsx` added a confirmation dialog before logout.*
+
+

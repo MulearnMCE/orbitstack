@@ -32,22 +32,22 @@
 
 ## General Comments
 
-**Comment 1**<br>
+**Comment 1 — Docker / Database Setup Confusion**<br>
 
 - *When I first saw `docker-compose.yml`, I thought of installing something in Docker. When I opened it, I saw the PostgreSQL username, password, and database, so I thought I needed to initialize Docker. For confirmation, I asked GitHub Copilot, "Do I need to initialize Docker for PostgreSQL?" But it reminded me of Prisma, so I left it and copied the DB URL from `env.example`.*
 
 - *But when I clicked the "Shop Now" button, it triggered an error: "Prisma couldn't connect to the database." I was shocked and asked OpenCode for a fix. It told me to start a local PostgreSQL 16 instance matching the repo's `docker-compose.yml` credentials using rootless Podman.*
 
-**Comment 2**<br>
+**Comment 2 — Navigation Buttons**<br>
 
-I added a back button and logout button feature
+Using Opencode I added a back button and logout button 
 
 - *Logout — `components/dashboard/LogoutButton.tsx` added to the Order History page.*
 - *Back arrow — `components/layout/BackButton.tsx` rendered in the root layout on the Orders and Shop pages.*
 
-**Comment 3**<br>
+**Comment 3 — Clear Cart on Logout**<br>
 
-I added a Clear Cart feature after every logout in the dashboard
+Using Opencode I also added a Clear Cart feature after every logout in the dashboard 
 
 - *Cart cleared — `actions/cart.ts` modified to clear the cart after logout.*
 - *Confirmation — `components/dashboard/LogoutButton.tsx` added a confirmation dialog before logout.*
