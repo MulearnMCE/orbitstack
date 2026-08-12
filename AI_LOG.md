@@ -11,25 +11,25 @@
 ## Logs:
 
 **Task 1: Pricing Logic Bug**
-- *Did you use AI to find the bug? If so, what prompt did you use?*
+- *Did you use AI to find the bug? If so, what prompt did you use?* <br>
     Yes, I use Github Copilot to find the bug, the bug was on the calculator.ts file. 
-- *Did you use AI to write the fix?*
+- *Did you use AI to write the fix?* <br>
     Yes, With Opencode I changed the logic, when a Pro user also has a stackable free-shipping code, the shipping rate gets added into discountCents, inflating the discount. Free shipping is already handled by setting shippingCents = 0. I'll remove the offending block so shipping stays a separate value.
 
 **Task 2: Dashboard Performance**
-- *How did you use AI here? Did you use it to identify the N+1 issue, or just to write the optimized query?*
+- *How did you use AI here? Did you use it to identify the N+1 issue, or just to write the optimized query?* <br>
 
 **Task 3: Duplicate Order Feature**
-- *Did you use AI to write the API route, the client component, or both?*
-- *Did AI make any mistakes you had to fix manually?*
+- *Did you use AI to write the API route, the client component, or both?* <br>
+- *Did AI make any mistakes you had to fix manually?* <br>
 
 ## General Comments
 
-**Comment1**
-   When i first see docker-compose.yml I thought of installing something in docker when i opened i got to see postgressql user,password and db then i thought i need to initialise docker, for confirmation i ask github copilot "do i need to initialise docker for postgressql" but it remember me of prisma. so i leave it and copy the db url from env.example <br>
-    But when i click 'shop now' button it trigger me an error "Prisma couldn't connect to the database." i shocked and asked opencode for the fix and it tell me to started a local Postgres 16 matching the repo's docker-compose.yml creds using rootless podman.
-**Comment2**
+**Comment1** <br>
+  - *When i first see docker-compose.yml I thought of installing something in docker when i opened i got to see postgressql user,password and db then i thought i need to initialise docker, for confirmation i ask github copilot "do i need to initialise docker for postgressql" but it remember me of prisma. so i leave it and copy the db url from env.example* 
+    - *But when i click 'shop now' button it trigger me an error "Prisma couldn't connect to the database." i shocked and asked opencode for the fix and it tell me to started a local Postgres 16 matching the repo's docker-compose.yml creds using rootless podman.*
+**Comment2** <br>
     I added a back button and logout button 
-    1. Logout — components/dashboard/LogoutButton.tsx added to the Order History page.
-    2. Back arrow — components/layout/BackButton.tsx rendered in the root layout on orders and shop pages.
+    - *Logout — components/dashboard/LogoutButton.tsx added to the Order History page.*
+    - *Back arrow — components/layout/BackButton.tsx rendered in the root layout on orders and shop pages.*
 
