@@ -18,14 +18,9 @@ export default async function DashboardPage() {
   const serialized = orders.map((o) => ({
     ...o,
     createdAt: o.createdAt.toISOString(),
-    updatedAt: o.updatedAt.toISOString(),
     items: o.items.map((item) => ({
       ...item,
-      product: {
-        ...item.product,
-        createdAt: item.product.createdAt.toISOString(),
-        updatedAt: item.product.updatedAt.toISOString(),
-      },
+      product: item.product,
     })),
   })) as (Order & { items: (OrderItem & { product: Product })[] })[];
 
@@ -59,4 +54,3 @@ export default async function DashboardPage() {
     </div>
   );
 }
-

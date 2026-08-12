@@ -67,8 +67,7 @@ model Order {
   discountCode      DiscountCode? @relation(fields: [discountCodeId], references: [id])
   items             OrderItem[]
 
-  @@index([userId])
-  @@index([createdAt])
+  @@index([userId, createdAt])
 }
 
 model OrderItem {
