@@ -27,15 +27,23 @@ export function computeOrderTotals(params: ComputeParams): PricingResult {
     discountCents = applyDiscountCode(subtotalCents, discountCode);
   }
 
-  if (userTier === PRO_TIER && subtotalCents >= FREE_SHIPPING_THRESHOLD_CENTS) {
+  // Shipping is free if the Pro-tier order threshold is met, OR the discount
+  // code itself grants free shipping.
+  const proThresholdFreeShipping =
+    userTier === PRO_TIER && subtotalCents >= FREE_SHIPPING_THRESHOLD_CENTS;
+  const codeFreeShipping = !!discountCode?.stackableWithFreeShipping;
+
+  if (proThresholdFreeShipping || codeFreeShipping) {
     shippingCents = 0;
   }
 
-  if (discountCode?.stackableWithFreeShipping) {
-    shippingCents = 0;
-  }
-
-  if (userTier === PRO_TIER && discountCode?.stackableWithFreeShipping) {
+  // Only credit the shipping-code's value as part of the "discount" amount
+  // when shipping wasn't already free via the Pro threshold. Previously this
+  // credit was applied whenever a Pro user redeemed a stackable free-shipping
+  // code, even if shippingCents was already 0 from the threshold — silently
+  // double-crediting the shipping value and pushing totals below what they
+  // should be (i.e. a "negative" shipping discount).
+  if (codeFreeShipping && !proThresholdFreeShipping) {
     discountCents += STANDARD_SHIPPING_RATE;
   }
 
