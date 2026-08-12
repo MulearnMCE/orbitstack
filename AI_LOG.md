@@ -4,8 +4,8 @@
 *GitHub Copilot, Opencode, ChatGPT*
 
 - *Github Copilot - For understanding the challenge, Logic errors and missing features*
-- *ChatGPT - For taking assistant with the errors in git*
-- *Opencode - For completing each Task*
+- *ChatGPT - For taking assistance in handling the errors in git*
+- *Opencode - For completing the coding part in each task*
 
 
 ## Logs:
@@ -40,7 +40,14 @@
 
 **Comment 2**<br>
 
-I added a back button and logout button.
+I added a back button and logout button feature
 
 - *Logout — `components/dashboard/LogoutButton.tsx` added to the Order History page.*
 - *Back arrow — `components/layout/BackButton.tsx` rendered in the root layout on the Orders and Shop pages.*
+
+**Comment 3**<br>
+
+I added a Clear Cart feature after every logout in the dashboard
+
+- *Cart cleared — `actions/cart.ts` modified to clear the cart after logout.*
+- *Confirmation — `components/dashboard/LogoutButton.tsx` added a confirmation dialog before logout.*

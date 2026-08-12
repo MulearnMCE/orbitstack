@@ -2,15 +2,18 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useCartStore } from '@/store/cart';
 
 export function LogoutButton() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const clearCart = useCartStore((s) => s.clearCart);
 
   const handleLogout = async () => {
     setLoading(true);
     try {
       await fetch('/api/auth/login', { method: 'DELETE' });
+      clearCart();
     } finally {
       router.push('/');
       router.refresh();
