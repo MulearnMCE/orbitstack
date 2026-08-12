@@ -1,8 +1,12 @@
+"use client";
+
 import { formatCents, formatDate, relativeDate, shortOrderId } from '@/lib/utils/format';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
+import { Button } from '@/components/ui/Button';
 import { OrderItemRow } from './OrderItemRow';
 import type { Order, OrderStatus } from '@/types';
+import { useCartStore } from '@/store/cart';
 
 interface OrderCardProps {
   order: Order & { items: NonNullable<Order['items']> };
@@ -17,6 +21,20 @@ const statusVariant: Record<OrderStatus, 'default' | 'success' | 'warning' | 'er
 };
 
 export function OrderCard({ order }: OrderCardProps) {
+  const replaceCart = useCartStore((s) => s.replaceCart);
+
+  const handleDuplicate = async () => {
+    const res = await fetch(`/api/orders/${order.id}`, {
+      method: 'POST',
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || 'Failed to duplicate order');
+      return;
+    }
+    replaceCart(data.data);
+  };
+
   return (
     <Card className="space-y-4" id={`order-card-${order.id}`}>
       {}
@@ -68,6 +86,11 @@ export function OrderCard({ order }: OrderCardProps) {
       </div>
 
       {}
+      <div className="pt-2">
+        <Button variant="secondary" onClick={handleDuplicate} className="w-full">
+          Duplicate Order
+        </Button>
+      </div>
     </Card>
   );
 }

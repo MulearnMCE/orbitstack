@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import { getSession } from '@/lib/auth/session';
 import { listOrders } from '@/lib/orders/queries';
 import { OrderCard } from '@/components/dashboard/OrderCard';
+import { LogoutButton } from '@/components/dashboard/LogoutButton';
 import type { Order, OrderItem, Product } from '@/types';
 
 export const metadata: Metadata = {
@@ -31,12 +32,15 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold text-lunar-100">Order History</h1>
-        <p className="mt-1 text-sm text-lunar-400">
-          Welcome back, {session.name} —{' '}
-          <span className="capitalize text-moon-gold">{session.tier}</span> member
-        </p>
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold text-lunar-100">Order History</h1>
+          <p className="mt-1 text-sm text-lunar-400">
+            Welcome back, {session.name} —{' '}
+            <span className="capitalize text-moon-gold">{session.tier}</span> member
+          </p>
+        </div>
+        <LogoutButton />
       </div>
 
       {serialized.length === 0 ? (
