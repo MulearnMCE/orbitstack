@@ -2,6 +2,7 @@ import { formatCents, formatDate, relativeDate, shortOrderId } from '@/lib/utils
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { OrderItemRow } from './OrderItemRow';
+import { DuplicateOrderButton } from './DuplicateOrderButton';
 import type { Order, OrderStatus } from '@/types';
 
 interface OrderCardProps {
@@ -67,7 +68,7 @@ export function OrderCard({ order }: OrderCardProps) {
         </div>
       </div>
 
-      {}
+      <DuplicateOrderButton orderId={order.id} />
     </Card>
   );
 }
