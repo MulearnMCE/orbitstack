@@ -4,12 +4,13 @@ import type { CartItem, Product } from '@/types';
 
 interface CartState {
   items: CartItem[];
-  
+
   addItem: (product: Product, quantity?: number) => void;
+  addItems: (items: CartItem[]) => void;
   removeItem: (productId: string) => void;
   updateQuantity: (productId: string, quantity: number) => void;
   clearCart: () => void;
-  
+
   itemCount: () => number;
   subtotalCents: () => number;
 }
@@ -32,6 +33,35 @@ export const useCartStore = create<CartState>()(
             };
           }
           return { items: [...state.items, { product, quantity }] };
+        });
+      },
+
+      addItems: (newItems: CartItem[]) => {
+        set((state) => {
+          const additions = new Map<string, CartItem>();
+
+          for (const item of newItems) {
+            const queued = additions.get(item.product.id);
+            additions.set(item.product.id, {
+              product: item.product,
+              quantity: (queued?.quantity ?? 0) + item.quantity,
+            });
+          }
+
+          const merged = state.items.map((item) => {
+            const addition = additions.get(item.product.id);
+            if (!addition) return item;
+
+            additions.delete(item.product.id);
+            return {
+              product: addition.product,
+              quantity: item.quantity + addition.quantity,
+            };
+          });
+
+          return {
+            items: [...merged, ...additions.values()],
+          };
         });
       },
 
