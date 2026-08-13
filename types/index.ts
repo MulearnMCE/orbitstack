@@ -69,6 +69,19 @@ export interface CartItem {
   quantity: number;
 }
 
+export interface DuplicateOrderSkippedItem {
+  productId: string;
+  name: string;
+  reason: 'inactive' | 'insufficient_stock';
+  requestedQuantity: number;
+  availableQuantity: number;
+}
+
+export interface DuplicateOrderResult {
+  items: CartItem[];
+  skippedItems: DuplicateOrderSkippedItem[];
+}
+
 // ---------------------------------------------------------------------------
 // API envelope — all routes return { data, error }
 // Never deviate from this shape: Task 1 tests that it's preserved.
