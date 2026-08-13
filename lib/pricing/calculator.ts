@@ -35,10 +35,8 @@ export function computeOrderTotals(params: ComputeParams): PricingResult {
     shippingCents = 0;
   }
 
-  if (userTier === PRO_TIER && discountCode?.stackableWithFreeShipping) {
-    discountCents += STANDARD_SHIPPING_RATE;
-  }
-
+  // Free shipping is represented only by shippingCents = 0. Crediting the
+  // shipping rate again through discountCents would apply the same benefit twice.
   const totalCents = Math.max(0, subtotalCents - discountCents + shippingCents);
 
   return {
